@@ -31,7 +31,7 @@ const Character = props => {
     return (
         <StyledCharacter className = 'character-wrap'>
             <p>{props.info.name}</p>
-            <button onClick ={()=> props.openDetails(props.info.created) }>+</button>
+            <button onClick ={()=> props.openDetails(props.info) }>+</button>
         </StyledCharacter>
     )
 }

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import './App.css';
 import Character from './Character';
+import Details from './Details';
 
 const App = () => {
   const [characters, setCharacters] = useState([]);
@@ -26,13 +27,16 @@ useEffect(() => {
     })
     .catch(err => console.error(err));
 },[])
-console.log(characters);
+
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
       {characters.length > 0 ? characters.map(ch => {
         return <Character info={ch} key= {ch.created} openDetails = {openDetails} />
       }) : <h3> Gathering Data </h3>}
+      
+        
+        {charSelected &&  <Details character={charSelected} close={closeDetails} />}
       
     </div>
   );
