@@ -31,14 +31,13 @@ useEffect(() => {
   return (
     <div className="App">
       <h1 className="Header">Characters</h1>
+      <div>
       {characters.length > 0 ? characters.map(ch => {
         return <Character info={ch} key= {ch.created} openDetails = {openDetails} />
       }) : <h3> Gathering Data </h3>}
-      
-        
+      </div>
         {charSelected &&  <Details character={charSelected} close={closeDetails} />}
-      
-    </div>
+        </div>
   );
 }
 

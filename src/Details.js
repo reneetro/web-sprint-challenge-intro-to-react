@@ -1,31 +1,50 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import styled from 'styled-components';
+
+const StyledDetails = styled.div`
+    background-color: white;
+    opacity: .7;
+    font-family: 'Redressed', cursive;
+    
+    h2{
+        padding-top: 2%;
+    }
+
+    p{
+        font-size: 1.2rem;
+    }
+
+    button{
+        margin-bottom: 2%;
+        background-color: #DCA686;
+        border-radius: 50%;
+        width: 15vh;
+        height: 5vh;
+        &:hover{
+            transform: scale(1.1);
+            background-color: #DC7438;
+            color: white;
+        }
+    }    
+`
 
 export default function Details(props) {
     
     const { character, close } = props;
-    const [details, setDetails] = useState('');
-
-    useEffect(() => {
-        axios.get(`https://swapi.dev/api/people`)
-          .then(res => {
-            setDetails(res.data);
-          }).catch(err => console.error(err))
-      }, [character])
+    console.log(character);
 
       return (
-        <div className='container'>
-            {console.log('details')}
-        <h2>Details of Character: {details.name}</h2>
+        <StyledDetails className='container'>
+        <h2>Details of Character: {character.name}</h2>
         {
-          details &&
+          character &&
           <>
-            <p>Gender: {details.gender}</p>
-            <p>Height:  {details.height}</p>
-            <p>Birth Year: {details.birth_year}</p>
+            <p>Gender: {character.gender}</p>
+            <p>Height:  {character.height} inches</p>
+            <p>Birth Year: {character.birth_year}</p>
           </>
         }
         <button onClick={close}>Close</button>
-      </div>
+      </StyledDetails>
       )
 }
